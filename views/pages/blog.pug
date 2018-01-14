@@ -1,0 +1,88 @@
+extends ../template
+
+block variables
+    - var title = 'Блог'
+
+block content
+    div.wrapper
+        section.hero#hero
+
+                .parallax#parallax
+                    .parallax__layer
+                        img.parallax__image(src="assets/images/png/Layer 1.png")
+                div.hero__top-line
+                    include ../common/social
+                    a.hamburger-menu#hamburger-menu(href="#")
+                        div.hamburger-menu-bars
+                div.hero__content
+                        span.bg.bg_intro.bg_blog
+                            svg.bg__image.bg__image_intro
+                                use(xlink:href="assets/images/svg/sprite.svg#stars1")
+                        div.hero__image
+                        span.title.white Блог
+                        span.main-text.white Статьи, которые я написал
+                a.scroll.scroll__down
+                    svg.scroll__image
+                        use(xlink:href="assets/images/svg/sprite.svg#portf_arrow_down")
+                svg.hero__bg.hero__bg_blog
+                    use(xlink:href="assets/images/svg/sprite.svg#bg")
+        section.blog#blog
+                 div.blog__content
+                     main.blog__articles
+                         ul.articles#articles
+                             if (articles)
+                                 each index in articles
+                                     li.article__item
+                                         h2.sub-title= index.title
+                                         span.accent.main-text=index.date
+                                         p.main-text= index.body
+
+                     aside.blog__nav#blogNav
+                        ul.articles-list
+                            if (articles)
+                                each index in articles
+                                    li.articles-list__item
+                                        span.articles__text= index.title
+
+
+
+        footer.footer
+
+                div.footer__column
+                        span.main-text.white Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool.
+                div.footer__column
+                        nav.navigation#navigation
+                            ul.navigation__list
+                                li.navigation__item
+                                    a.navigation__link(href="my-works")
+                                        span.navigation__text Мои работы
+                                li.navigation__item
+                                    a.navigation__link(href="about")
+                                        span.navigation__text Обо мне
+                                li.navigation__item
+                                    a.navigation__link.navigation__link_current(href="blog")
+                                        span.navigation__text Блог
+                                li.navigation__item
+                                    a.navigation__link(href="/")
+                                        span.navigation__text Авторизация
+                        ul.social
+                            li.social__item
+                                a.social__link(href="#")
+                                    svg.social__image.social__image_grey.social__image_mobile
+                                        use(xlink:href="assets/images/svg/sprite.svg#vk")
+                            li.social__item
+                                a.social__link(href="#")
+                                    svg.social__image.social__image_grey.social__image_mobile
+                                        use(xlink:href="assets/images/svg/sprite.svg#github")
+                            li.social__item
+                                a.social__link(href="#")
+                                    svg.social__image.social__image_grey.social__image_mobile
+                                        use(xlink:href="assets/images/svg/sprite.svg#in")
+
+                div.footer__column
+                        span.main-text.white Skype: +79060761095
+                        span.main-text.white pisarev_dmitry@mail.ru
+                        span.main-text.white +7 906 076 10 95
+                        span.main-text.white г.Москва
+                div.footer__signature
+                    include ../common/signature
