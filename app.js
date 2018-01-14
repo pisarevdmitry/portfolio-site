@@ -15,8 +15,9 @@ var indexApi = require('./api/routes/index');
 var app = express();
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', '*');
-    res.append("Access-Control-Allow-Headers","*");
+    res.append("Access-Control-Allow-Headers","content-type");
     res.append("Access-Control-Allow-Methods","*");
+    res.append("Access-Control-Allow-Credentials","true");
     next();
 });
 
