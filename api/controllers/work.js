@@ -18,6 +18,7 @@ module.exports.createWork = (req, res) => {
     let item = new Model({
         title: req.body.title,
         tech: req.body.tech,
+        link:req.body.link,
         file: req.file
     });
     //сохраняем запись в базе

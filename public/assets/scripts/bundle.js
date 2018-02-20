@@ -179,15 +179,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         Object(__WEBPACK_IMPORTED_MODULE_1__parallax__["a" /* default */])(hero, container);
         Object(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */])(button, nav);
         Object(__WEBPACK_IMPORTED_MODULE_3__map__["a" /* default */])();
+         Object(__WEBPACK_IMPORTED_MODULE_4__preloader__["a" /* default */])();
         scrollInit.top();
     } else if (url.indexOf("/blog") > -1) {
         Object(__WEBPACK_IMPORTED_MODULE_6__sidebar__["a" /* default */])(blogNav);
         Object(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */])(button, nav);
+        Object(__WEBPACK_IMPORTED_MODULE_4__preloader__["a" /* default */])();
         Object(__WEBPACK_IMPORTED_MODULE_1__parallax__["a" /* default */])(hero, container);
         scrollInit.top();
     } else if(url.indexOf("/my-works") > -1) {
         Object(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */])(button, nav);
         Object(__WEBPACK_IMPORTED_MODULE_1__parallax__["a" /* default */])(hero, container);
+         Object(__WEBPACK_IMPORTED_MODULE_4__preloader__["a" /* default */])();
         Object(__WEBPACK_IMPORTED_MODULE_5__slider__["a" /* default */])(1.3);
         scrollInit.top();
         scrollInit.bottom();
@@ -526,7 +529,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         const stop = percents => {
             if (percents === 100) {
                 setTimeout(() => {
-                    sessionStorage.setItem("my-preloader", true);
+
                     container.style.display = "none";
                 }, 1000);
             }
@@ -537,20 +540,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             inner.style.strokeDasharray = `${percents * 1.57} 282.6`;
             stop(percents);
         };
+        if(images.length >0){
+            for (let i = 0; i <= images.length - 1; i++) {
+                console.log(images[i], "loading");
+                images[i].addEventListener("load", () => {
+                    count++;
+                    show(count);
+                });
+            }
+        }
+        if(videos.length >0){
+            for (let i = 0; i <= videos.length - 1; i++) {
+                videos[i].addEventListener("canplay", () => {
+                    count++;
+                    show(count);
+                });
+            }
+        }
 
-        for (let i = 0; i <= images.length - 1; i++) {
-            console.log(images[i], "loading");
-            images[i].addEventListener("load", () => {
-                count++;
-                show(count);
-            });
-        }
-        for (let i = 0; i <= videos.length - 1; i++) {
-            videos[i].addEventListener("canplay", () => {
-                count++;
-                show(count);
-            });
-        }
     };
 
     /***/
@@ -794,7 +801,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 object[key] = value;
             });
             let json = JSON.stringify(object);
-            fetch("http://5.23.49.51:80/contacts", {
+            fetch("http://localhost:80/contacts", {
                 method: "POST",
                 body: json,
                 headers: myHeaders
