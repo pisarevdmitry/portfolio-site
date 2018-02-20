@@ -11,6 +11,10 @@ const mongoose = require('mongoose'),
             type: String,
             required: [true, 'Укажите содержимое статьи']
         },
+        link: {
+            type: String,
+            required: [true, 'Укажите линк']
+        },
         file: {
             type: Object,
              required: [true, 'Укажите дату публикации']
